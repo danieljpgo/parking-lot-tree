@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace tfi_aed
 {
-    class Program
+    class Arvore
     {
-        static void Main(string[] args)
-        {
-
-        }
     }
 }
