@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace tfi_aed
 {
-    class Arvore
+    class Estacionada
     {
 
+        // Atributos
+
+        // Construtor
+        public Estacionada()
+        {
+
+        }
     }
 }
