@@ -43,9 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arvore.cs" />
+    <Compile Include="Arquivo.cs" />
+    <Compile Include="Placa.arvore.cs" />
     <Compile Include="Estacionada.cs" />
+    <Compile Include="Fila.cs" />
     <Compile Include="Lista.cs" />
+    <Compile Include="Placa.cs" />
+    <Compile Include="Placa.nodo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

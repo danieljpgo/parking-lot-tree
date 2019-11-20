@@ -10,7 +10,10 @@ namespace tfi_aed
     {
         static void Main(string[] args)
         {
+            Arquivo dados = new Arquivo();
+            dados.LeitorPlacas();
 
+            Console.ReadKey();
         }
     }
 }
