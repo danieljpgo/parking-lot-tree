@@ -27,7 +27,7 @@ namespace tfi_aed
                 linhaSepara = linha.Split(';');
                 placa = new Placa(linhaSepara[0], int.Parse(linhaSepara[1]));
                 placaNode = new PlacaNode(placa);
-                placaArvore.InserirArvore();
+                placaArvore.GerarArvore(placaNode);
             }
         }
     }

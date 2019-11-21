@@ -19,6 +19,7 @@ namespace tfi_aed
         public PlacaNode(Placa placa)
         {
             this.placa = placa;
+            this.esquerda = this.direita = null;
         }
 
         public Placa Placa
