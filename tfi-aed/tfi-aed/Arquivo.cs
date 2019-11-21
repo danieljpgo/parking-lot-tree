@@ -51,9 +51,7 @@ namespace tfi_aed
                     linhaSepara[1],
                     DateTime.ParseExact(linhaSepara[2], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture),
                     DateTime.ParseExact(linhaSepara[3], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture));
-
                 arvore.InserirNaArvore(estacionada);
-                
                 Console.WriteLine(estacionada);
             }
 

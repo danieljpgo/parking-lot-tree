@@ -74,25 +74,27 @@ namespace tfi_aed
         public void InserirNaArvore(Estacionada estacionada)
         {
             PlacaNode aux;
-           
-                int achou = 0;
-                aux = raiz;
-                while (achou == 0)
+            int achou = 0;
+            aux = raiz;
+            while (achou == 0)
+            {
+                if (estacionada.Placa.CompareTo(aux.Placa.Nome) < 0)
                 {
-                    if (estacionada.Placa.CompareTo(aux.Placa.Nome) < 0)
-                    {
-                        aux = aux.Esquerda;
-                    }
-                    else if (estacionada.Placa.CompareTo(aux.Placa.Nome) > 0)
-                    {
-                        aux = aux.Direita;
-                    }
-                    else if (estacionada.Placa.CompareTo(aux.Placa.Nome) == 0)
-                    {
-                        aux.Estacionadas.Add(estacionada);
-                        achou = 1;
-                    }
+                    aux = aux.Esquerda;
                 }
+                else if (estacionada.Placa.CompareTo(aux.Placa.Nome) > 0)
+                {
+                    aux = aux.Direita;
+                }
+                else if (estacionada.Placa.CompareTo(aux.Placa.Nome) == 0)
+                {
+                    aux.Estacionadas.Add(estacionada);
+                    Console.WriteLine(aux.Placa.Nome);
+                    Console.WriteLine(estacionada.Placa);
+                    Console.WriteLine(aux.Estacionadas.Count);
+                    achou = 1;
+                }
+            }
         }
 
         // Método usado para localizar o veículo nas estruturas criadas de árvore e filas
