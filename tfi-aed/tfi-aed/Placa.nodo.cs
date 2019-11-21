@@ -11,15 +11,16 @@ namespace tfi_aed
         private Placa placa;
         private PlacaNode direita;
         private PlacaNode esquerda;
-        private int posicao;
+        private List<Estacionada> estacionadas;
 
         public PlacaNode()
         { }
 
-        public PlacaNode(Placa placa)
+        public PlacaNode(Placa placa, List<Estacionada> estacionadas)
         {
             this.placa = placa;
             this.esquerda = this.direita = null;
+            this.estacionadas = estacionadas;
         }
 
         public Placa Placa
@@ -40,10 +41,11 @@ namespace tfi_aed
             set { esquerda = value; }
         }
 
-        public int Posicao
+        public List<Estacionada> Estacionadas
         {
-            get { return posicao; }
-            set { posicao = value; }
+            get { return estacionadas; }
+            set { estacionadas = value; }
         }
+
     }
 }

@@ -11,7 +11,9 @@ namespace tfi_aed
         static void Main(string[] args)
         {
             Arquivo dados = new Arquivo();
-            dados.LeitorPlacas();
+
+            PlacaArvore placaArvore = dados.LeitorPlacas();
+            placaArvore = dados.LeitorEstacionada(placaArvore);
 
             Console.ReadKey();
         }
