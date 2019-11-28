@@ -8,9 +8,11 @@ namespace tfi_aed
 {
     class Placa
     {
+        // Atributos
         private string nome;
         private int tipo;
 
+        // Construtor
         public Placa()
         { }
 

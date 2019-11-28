@@ -56,11 +56,15 @@ namespace tfi_aed
             {
                 linha = reader.ReadLine();
                 linhaSepara = linha.Split(';');
+
+                // Gerar Estacionada
                 estacionada = new Estacionada(
                     linhaSepara[0],
                     linhaSepara[1],
                     DateTime.ParseExact(linhaSepara[2], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture),
                     DateTime.ParseExact(linhaSepara[3], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture));
+
+                // Inserir estacionada em seu respectivo Nodo na Arvore
                 arvore.InserirNaArvore(estacionada);
             }
 

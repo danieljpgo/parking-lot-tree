@@ -8,13 +8,15 @@ namespace tfi_aed
 {
     class PlacaNode
     {
+        // Atributos
         private Placa placa;
         private PlacaNode direita;
         private PlacaNode esquerda;
         private PlacaNode pai;
         private int balanceamento;
         private List<Estacionada> estacionadas;
-         
+
+        // Construtor
         public PlacaNode()
         { }
 
