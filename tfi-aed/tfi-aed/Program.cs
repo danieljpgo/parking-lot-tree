@@ -15,6 +15,10 @@ namespace tfi_aed
             PlacaArvore placaArvore = dados.LeitorPlacas();
             placaArvore = dados.LeitorEstacionada(placaArvore);
 
+            PlacaNode placaNode = placaArvore.LocalizarVeiculo("PUA-7542");
+            Console.WriteLine(placaNode);
+
+
             Console.ReadKey();
         }
     }

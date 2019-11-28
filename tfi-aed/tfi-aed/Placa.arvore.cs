@@ -81,50 +81,77 @@ namespace tfi_aed
                 if (estacionada.Placa.CompareTo(aux.Placa.Nome) < 0)
                 {
                     aux = aux.Esquerda;
+                    Console.WriteLine("Esquerda");
                 }
                 else if (estacionada.Placa.CompareTo(aux.Placa.Nome) > 0)
                 {
                     aux = aux.Direita;
+                    Console.WriteLine("Direita");
                 }
                 else if (estacionada.Placa.CompareTo(aux.Placa.Nome) == 0)
                 {
                     aux.Estacionadas.Add(estacionada);
-                    Console.WriteLine(aux.Placa.Nome);
-                    Console.WriteLine(estacionada.Placa);
                     Console.WriteLine(aux.Estacionadas.Count);
+                    Console.WriteLine(aux.Placa.Nome);
                     achou = 1;
                 }
             }
         }
 
-        // Método usado para localizar o veículo nas estruturas criadas de árvore e filas
-        //public void LocalizarVeiculo(string placaVeiculo)
-        //{
-        //    PlacaNode aux = raiz;
-        //    Fila auxFila = new Fila();
-        //    int achou = 0;
-        //    if (raiz == null)
-        //        Console.WriteLine(" Árvore vazia");
+        public void PrintarEstaciondas(string placaVeiculo)
+        {
+            PlacaNode placaNode = LocalizarVeiculo(placaVeiculo);
 
-        //    // Primeiro achar a placa e em seguida a posicao na lista de filas 
-        //    else
-        //    {
-        //        while (aux != null && achou == 0)
-        //        {
-        //            if (aux.Placa.CompareTo(placaVeiculo) == 0)
-        //            {
-        //                // 0 apenas para preencher a solicitação no método que vai receber
-        //                auxFila.Desenfileirar(auxFila, 2, aux.Posicao);
-        //                achou = 1;
-        //            }
-        //            else if (aux.Placa.CompareTo(placaVeiculo) > 0)
-        //                aux = aux.Esquerda;
-        //            else if (aux.Placa.CompareTo(placaVeiculo) < 0)
-        //                aux = aux.Direita;
-        //        }
-        //        if (achou == 0)
-        //            Console.WriteLine(" Placa não encontrada");
-        //    }
-        //}
+            placaNode.Estacionadas.ForEach((value) =>
+            {
+                // Calcular valor a pagar
+                // Tempo de saida menos o tempo de entrada
+                TimeSpan valor = value.Saida.Subtract(value.Entrada);
+                double horas = valor.TotalHours;
+                int pagar = 0;
+
+                if(placaNode.Placa.Tipo == 2)
+                {
+                    pagar = (horas * 1);
+                }
+                else
+                {
+                    pagar = (horas * 1);
+                }
+
+                Console.WriteLine(value.Entrada);
+            });
+        }
+
+        // Método usado para localizar o veículo nas estruturas criadas de árvore e filas
+        public PlacaNode LocalizarVeiculo(string placaVeiculo)
+        {
+            PlacaNode aux = raiz;
+            int achou = 0;
+
+            if (raiz == null)
+            {
+                Console.WriteLine(" Árvore vazia");
+                return null;
+            }
+            else
+            {
+                while (aux != null && achou == 0)
+                {
+                    if (aux.Placa.Nome.CompareTo(placaVeiculo) == 0)
+                    {
+                        // Ao achar a placa é retornado o Nodo
+                        return aux;
+                    }
+                    else if (aux.Placa.Nome.CompareTo(placaVeiculo) > 0)
+                        aux = aux.Esquerda;
+                    else if (aux.Placa.Nome.CompareTo(placaVeiculo) < 0)
+                        aux = aux.Direita;
+                }
+
+                Console.WriteLine(" Placa não encontrada");
+                return null;
+            }
+        }
     }
 }

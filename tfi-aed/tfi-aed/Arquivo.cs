@@ -31,6 +31,8 @@ namespace tfi_aed
                 placaArvore.GerarArvore(placaNode);
             }
 
+            // Organizar a arvore aqui
+
             return placaArvore;
         }
 
@@ -52,9 +54,9 @@ namespace tfi_aed
                     DateTime.ParseExact(linhaSepara[2], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture),
                     DateTime.ParseExact(linhaSepara[3], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture));
                 arvore.InserirNaArvore(estacionada);
-                Console.WriteLine(estacionada);
             }
 
+            // Ordenar a arvore aqui, depois retornar
             return arvore;
         }
     }

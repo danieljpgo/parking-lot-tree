@@ -12,7 +12,7 @@ namespace tfi_aed
         private PlacaNode direita;
         private PlacaNode esquerda;
         private List<Estacionada> estacionadas;
-
+         
         public PlacaNode()
         { }
 
