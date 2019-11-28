@@ -17,22 +17,29 @@ namespace tfi_aed
             Placa placa;
             PlacaNode placaNode;
             PlacaArvore placaArvore = new PlacaArvore();
-            List<Estacionada> estacionadas = new List<Estacionada>();
+            List<Estacionada> estacionadas;
 
             string linha;
             string[] linhaSepara;
 
+
+            Console.WriteLine("Leitor de Placas iniciado.");
             while (!reader.EndOfStream)
             {
                 linha = reader.ReadLine();
                 linhaSepara = linha.Split(';');
+
+                // Gerar Placa
                 placa = new Placa(linhaSepara[0], int.Parse(linhaSepara[1]));
+
+                // Gerar Nodo 
+                estacionadas = new List<Estacionada>();
                 placaNode = new PlacaNode(placa, estacionadas);
-                placaArvore.GerarArvore(placaNode);
+
+                // Inserir Nodo na Arvore
+                placaArvore.Inserir(placaNode);
             }
-
-            // Organizar a arvore aqui
-
+            Console.WriteLine("Leitor de Placas finalizado.");
             return placaArvore;
         }
 
@@ -44,6 +51,7 @@ namespace tfi_aed
             string linha;
             string[] linhaSepara;
 
+            Console.WriteLine("Leitor de Estacionadas iniciado.");
             while (!reader.EndOfStream)
             {
                 linha = reader.ReadLine();
@@ -56,7 +64,7 @@ namespace tfi_aed
                 arvore.InserirNaArvore(estacionada);
             }
 
-            // Ordenar a arvore aqui, depois retornar
+            Console.WriteLine("Leitor de Estacionadas finalizado.");
             return arvore;
         }
     }

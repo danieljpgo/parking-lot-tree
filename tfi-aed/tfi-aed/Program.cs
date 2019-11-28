@@ -11,11 +11,11 @@ namespace tfi_aed
         static void Main(string[] args)
         {
 
-            // 2
+
+            // 2 Finalizada
             Arquivo dados = new Arquivo();
             PlacaArvore placaArvore = dados.LeitorPlacas();
             placaArvore = dados.LeitorEstacionada(placaArvore);
-
 
             placaArvore.PrintarEstaciondas("PUA-7542");
 

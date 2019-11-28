@@ -11,6 +11,8 @@ namespace tfi_aed
         private Placa placa;
         private PlacaNode direita;
         private PlacaNode esquerda;
+        private PlacaNode pai;
+        private int balanceamento;
         private List<Estacionada> estacionadas;
          
         public PlacaNode()
@@ -39,6 +41,17 @@ namespace tfi_aed
         {
             get { return esquerda; }
             set { esquerda = value; }
+        }
+        public PlacaNode Pai
+        {
+            get { return pai; }
+            set { pai = value; }
+        }
+
+        public int Balanceamento
+        {
+            get { return balanceamento; }
+            set { balanceamento = value; }
         }
 
         public List<Estacionada> Estacionadas
