@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace tfi_aed
 {
-    class PlacaArvore
+    class VagaArvore
     {
-        PlacaNode raiz;
+        VagaNodo raiz;
 
-        public PlacaArvore()
+        public VagaArvore()
         { }
 
         // Método para checar se a árvore está vazia
@@ -23,7 +23,7 @@ namespace tfi_aed
         }
 
         // Método para retornar a altura da Arvore
-        private int Altura(PlacaNode nodo)
+        private int Altura(VagaNodo nodo)
         {
             if (nodo == null)
             {
@@ -52,13 +52,13 @@ namespace tfi_aed
         }
 
         // Método para iniciar a geração da Arvore
-        public void Inserir(PlacaNode novo)
+        public void Inserir(VagaNodo novo)
         {
             Inserir(this.raiz, novo);
         }
 
         // Método para gerar a Arvore
-        public void Inserir(PlacaNode onde, PlacaNode novo)
+        public void Inserir(VagaNodo onde, VagaNodo novo)
         {
             if (onde == null)
             {
@@ -66,7 +66,7 @@ namespace tfi_aed
             }
             else
             {
-                if (novo.Placa.Nome.CompareTo(onde.Placa.Nome) < 0)
+                if (novo.Vaga.Nome.CompareTo(onde.Vaga.Nome) < 0)
                 {
                     if (onde.Esquerda == null)
                     {
@@ -74,19 +74,17 @@ namespace tfi_aed
                         novo.Pai = onde;
 
                         // Metodo para Balancear
-                        //Console.WriteLine("Esq");
                         Balancear(onde);
 
                     }
                     else
                     {
                         // Inserir a esquerda
-                        //Console.WriteLine("Esq Inserir");
                         Inserir(onde.Esquerda, novo);
                     }
 
                 }
-                else if (novo.Placa.Nome.CompareTo(onde.Placa.Nome) > 0)
+                else if (novo.Vaga.Nome.CompareTo(onde.Vaga.Nome) > 0)
                 {
 
                     if (onde.Direita == null)
@@ -116,7 +114,7 @@ namespace tfi_aed
         }
 
         // Método básico de balanceamento
-        public void Balancear(PlacaNode atual)
+        public void Balancear(VagaNodo atual)
         {
             atual.Balanceamento = (Altura(atual.Direita) - Altura(atual.Esquerda));
             int balanceamento = atual.Balanceamento;
@@ -159,10 +157,10 @@ namespace tfi_aed
         }
 
         // Método para Rotacionar a Esquerda
-        public PlacaNode RotacionarEsquerda(PlacaNode inicial)
+        public VagaNodo RotacionarEsquerda(VagaNodo inicial)
         {
 
-            PlacaNode direita = inicial.Direita;
+            VagaNodo direita = inicial.Direita;
             direita.Pai = inicial.Pai;
 
             inicial.Direita = direita.Esquerda;
@@ -196,10 +194,10 @@ namespace tfi_aed
         }
 
         // Método para Rotacionar a Direita
-        public PlacaNode RotacionarDireita(PlacaNode inicial)
+        public VagaNodo RotacionarDireita(VagaNodo inicial)
         {
 
-            PlacaNode esquerda = inicial.Esquerda;
+            VagaNodo esquerda = inicial.Esquerda;
             esquerda.Pai = inicial.Pai;
 
             inicial.Esquerda = esquerda.Direita;
@@ -232,14 +230,14 @@ namespace tfi_aed
         }
 
         // Método para rotacionamento duplo
-        public PlacaNode DuplaRotacaoEsquerdaDireita(PlacaNode inicial)
+        public VagaNodo DuplaRotacaoEsquerdaDireita(VagaNodo inicial)
         {
             inicial.Esquerda = (RotacionarEsquerda(inicial.Esquerda));
             return RotacionarDireita(inicial);
         }
 
         // Método para rotacionamento duplo
-        public PlacaNode DuplaRotacaoDireitaEsquerda(PlacaNode inicial)
+        public VagaNodo DuplaRotacaoDireitaEsquerda(VagaNodo inicial)
         {
             inicial.Direita = (RotacionarDireita(inicial.Direita));
             return RotacionarEsquerda(inicial);
@@ -248,20 +246,21 @@ namespace tfi_aed
         // Método para Inserir na estrutura árvore objetos recebidos 
         public void InserirNaArvore(Estacionada estacionada)
         {
-            PlacaNode aux;
+            VagaNodo aux;
             int achou = 0;
             aux = raiz;
             while (achou == 0)
             {
-                if (estacionada.Placa.CompareTo(aux.Placa.Nome) < 0)
+                Console.WriteLine((aux.Vaga.Nome));
+                if (estacionada.Placa.CompareTo(aux.Vaga.Nome) < 0)
                 {
                     aux = aux.Esquerda;
                 }
-                else if (estacionada.Placa.CompareTo(aux.Placa.Nome) > 0)
+                else if (estacionada.Placa.CompareTo(aux.Vaga.Nome) > 0)
                 {
                     aux = aux.Direita;
                 }
-                else if (estacionada.Placa.CompareTo(aux.Placa.Nome) == 0)
+                else if (estacionada.Placa.CompareTo(aux.Vaga.Nome) == 0)
                 {
                     aux.Estacionadas.Add(estacionada);
                     achou = 1;
@@ -270,44 +269,25 @@ namespace tfi_aed
         }
 
         // Método para Printar as informações relacionadas as Estacionadas de uma Placa
-        public void PrintarEstaciondas(string placaVeiculo)
+        public void PrintarEstaciondas(string vaga, string valorInit, string valorFim)
         {
             // Buscar as informações relacionadas ao Veiculo
-            PlacaNode placaNode = LocalizarVeiculo(placaVeiculo);
+            VagaNodo vagaNodo = LocalizarVaga(vaga);
 
-            Console.WriteLine("Informações sobre o Veiculo de Placa: {0}", placaVeiculo);
-
-            double totalPagar = 0;
+            Console.WriteLine("Informações sobre a Vaga: {0}", vaga);
 
             // Loop para printar as informações
-            placaNode.Estacionadas.ForEach((value) =>
+            vagaNodo.Estacionadas.ForEach((value) =>
             {
-                // Calcular valor a pagar
-                // Tempo de saida menos o tempo de entrada
-                TimeSpan valor = value.Saida.Subtract(value.Entrada);
-                double horas = valor.TotalHours;
-                double pagar = 0;
-
-                if (placaNode.Placa.Tipo == 2)
-                {
-                    pagar = (horas * 0.6);
-                }
-                else
-                {
-                    pagar = (horas * 1);
-                }
-
-                totalPagar += pagar;
-                Console.WriteLine("Entrada: {0}\tSaida: {1}\tTipo: {2}\tTotal Horas: {3}\tValor: {4}", value.Entrada, value.Saida, placaNode.Placa.Tipo, horas, pagar);
+                Console.WriteLine("Entrada: {0}\tSaida: {1}\tPlaca: {2}", value.Entrada, value.Saida, value.Placa);
                 Console.WriteLine("-----------------");
             });
-            Console.WriteLine("Valor total a pagar: {0}", totalPagar);
         }
 
         // Método usado para localizar o veículo nas estruturas criadas de árvore e filas
-        public PlacaNode LocalizarVeiculo(string placaVeiculo)
+        public VagaNodo LocalizarVaga(string vaga)
         {
-            PlacaNode aux = raiz;
+            VagaNodo aux = raiz;
             int achou = 0;
 
             if (raiz == null)
@@ -319,14 +299,14 @@ namespace tfi_aed
             {
                 while (aux != null && achou == 0)
                 {
-                    if (aux.Placa.Nome.CompareTo(placaVeiculo) == 0)
+                    if (aux.Vaga.Nome.CompareTo(vaga) == 0)
                     {
-                        // Ao achar a placa é retornado o Nodo
+                        // Ao achar a vaga é retornado o Nodo
                         return aux;
                     }
-                    else if (aux.Placa.Nome.CompareTo(placaVeiculo) > 0)
+                    else if (aux.Vaga.Nome.CompareTo(vaga) > 0)
                         aux = aux.Esquerda;
-                    else if (aux.Placa.Nome.CompareTo(placaVeiculo) < 0)
+                    else if (aux.Vaga.Nome.CompareTo(vaga) < 0)
                         aux = aux.Direita;
                 }
 
