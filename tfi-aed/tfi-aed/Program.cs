@@ -10,14 +10,14 @@ namespace tfi_aed
     {
         static void Main(string[] args)
         {
-            Arquivo dados = new Arquivo();
 
+            // 2
+            Arquivo dados = new Arquivo();
             PlacaArvore placaArvore = dados.LeitorPlacas();
             placaArvore = dados.LeitorEstacionada(placaArvore);
 
-            PlacaNode placaNode = placaArvore.LocalizarVeiculo("PUA-7542");
-            Console.WriteLine(placaNode);
 
+            placaArvore.PrintarEstaciondas("PUA-7542");
 
             Console.ReadKey();
         }

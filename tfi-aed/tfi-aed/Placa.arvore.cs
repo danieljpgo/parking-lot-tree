@@ -100,26 +100,31 @@ namespace tfi_aed
 
         public void PrintarEstaciondas(string placaVeiculo)
         {
+            // Buscar as informações relacionadas ao Veiculo
             PlacaNode placaNode = LocalizarVeiculo(placaVeiculo);
 
+            Console.WriteLine("Informações sobre o Veiculo de Placa: {0}", placaVeiculo);
+
+            // Loop para printar as informações
             placaNode.Estacionadas.ForEach((value) =>
             {
                 // Calcular valor a pagar
                 // Tempo de saida menos o tempo de entrada
                 TimeSpan valor = value.Saida.Subtract(value.Entrada);
                 double horas = valor.TotalHours;
-                int pagar = 0;
+                double pagar = 0;
 
-                if(placaNode.Placa.Tipo == 2)
+                if (placaNode.Placa.Tipo == 2)
                 {
-                    pagar = (horas * 1);
+                    pagar = (horas * 0.6);
                 }
                 else
                 {
                     pagar = (horas * 1);
                 }
 
-                Console.WriteLine(value.Entrada);
+                Console.WriteLine("Entrada: {0}\tSaida: {1}\tValor: {2}", value.Entrada, value.Saida, pagar);
+                Console.WriteLine("-----------------");
             });
         }
 
