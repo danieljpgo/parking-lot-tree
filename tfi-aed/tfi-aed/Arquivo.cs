@@ -43,7 +43,6 @@ namespace tfi_aed
             return placaArvore;
         }
 
-
         public DataArvore LeitorDatas(int estacionamento, VagaArvore vagasArvore)
         {
             StreamReader reader = new StreamReader("AEDVagasEstacionamento.txt");
@@ -118,7 +117,7 @@ namespace tfi_aed
             return vagaArvore;
         }
 
-        public dynamic LeitorEstacionada(PlacaArvore placaArvore, VagaArvore vagaArvore, DataArvore dataArvore)
+        public dynamic LeitorEstacionada(PlacaArvore placaArvore, VagaArvore vagaArvore)
         {
             StreamReader reader = new StreamReader("AEDEstacionadas.txt");
             Estacionada estacionada;
@@ -145,19 +144,6 @@ namespace tfi_aed
                     placaArvore.InserirNaArvore(estacionada);
                 }
 
-                if (dataArvore != null)
-                {
-                    // Gerar Estacionada
-                    estacionada = new Estacionada(
-                        linhaSepara[0],
-                        linhaSepara[1],
-                        DateTime.ParseExact(linhaSepara[2], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture),
-                        DateTime.ParseExact(linhaSepara[3], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture));
-
-                    // Inserir estacionada em seu respectivo Nodo na Arvore
-                    dataArvore.InserirNaArvore(estacionada);
-                }
-
                 if (vagaArvore != null)
                 {
                     // Gerar Estacionada
@@ -178,14 +164,53 @@ namespace tfi_aed
             {
                 return placaArvore;
             }
-            else if (dataArvore != null)
-            {
-                return dataArvore;
-            }
             else
             {
                 return vagaArvore;
             }
         }
+
+        public DataArvore LeitorEstacionadaData(DataArvore dataArvore)
+        {
+            StreamReader reader = new StreamReader("AEDEstacionadas.txt");
+            Estacionada estacionada;
+
+            string linha;
+            string[] linhaSepara;
+
+            Console.WriteLine("Leitor de Estacionadas iniciado.");
+            while (!reader.EndOfStream)
+            {
+                linha = reader.ReadLine();
+                linhaSepara = linha.Split(';');
+
+                // Gerar Estacionada
+                estacionada = new Estacionada(
+                    linhaSepara[0],
+                    linhaSepara[1],
+                    DateTime.ParseExact(linhaSepara[2], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture),
+                    DateTime.ParseExact(linhaSepara[3], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture));
+
+                // Inserir estacionada em seu respectivo Nodo na Arvore
+                dataArvore.InserirNaArvore(estacionada);
+            }
+
+            Console.WriteLine("Leitor de Estacionadas finalizado.");
+            return dataArvore;
+        }
+
+        //if (dataArvore != null)
+        //       {
+        //           // Gerar Estacionada
+        //           estacionada = new Estacionada(
+        //               linhaSepara[0],
+        //               linhaSepara[1],
+        //               DateTime.ParseExact(linhaSepara[2], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture),
+        //               DateTime.ParseExact(linhaSepara[3], "dd/MM/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture));
+
+        //           // Inserir estacionada em seu respectivo Nodo na Arvore
+        //           dataArvore.InserirNaArvore(estacionada);
+        //       }
+
     }
 }

@@ -271,8 +271,8 @@ namespace tfi_aed
         // Método para Printar as informações relacionadas as Estacionadas de uma Placa
         public void PrintarDatas(string data)
         {
-            //// Buscar as informações relacionadas ao Veiculo
-            //DataNodo vagaNodo = LocalizarData(vaga);
+            // Buscar as informações relacionadas ao Veiculo
+            DataNodo dataNodo = LocalizarData(data);
 
             //DateTime inicio = DateTime.ParseExact(valorInit, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             //DateTime fim = DateTime.ParseExact(valorFim, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);

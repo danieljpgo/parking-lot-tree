@@ -26,7 +26,7 @@ namespace tfi_aed
                     string vaga = Console.ReadLine();
 
                     VagaArvore vagaArvore = dados.LeitorVagas();
-                    vagaArvore = dados.LeitorEstacionada(null, vagaArvore, null);
+                    vagaArvore = dados.LeitorEstacionada(null, vagaArvore);
 
                     Console.WriteLine("Digite data inicial");
                     string intervaloIni = Console.ReadLine();
@@ -48,7 +48,7 @@ namespace tfi_aed
                     string placa = Console.ReadLine();
 
                     PlacaArvore placaArvore = dados.LeitorPlacas();
-                    placaArvore = dados.LeitorEstacionada(placaArvore, null, null);
+                    placaArvore = dados.LeitorEstacionada(placaArvore, null);
 
                     placaArvore.PrintarEstaciondas(placa);
 
@@ -63,12 +63,22 @@ namespace tfi_aed
                     Console.WriteLine("Qual a data que deseja selecionar (DD/MM/YYYY)?");
                     string data = Console.ReadLine();
 
+                    // Arvore de vagas para buscar o estacionamento
                     VagaArvore vagaArvore = dados.LeitorVagas();
 
-                    DataArvore dataArvore = dados.LeitorDatas(0, vagaArvore);
-                    dataArvore = dados.LeitorEstacionada(null, null, dataArvore);
+                    Console.WriteLine("Gerando arvores de vagas para os estacionamentos");
+                    // Estacionamentos
+                    DataArvore[] estacionamentos = new DataArvore[3] ;
+                    estacionamentos[0] = dados.LeitorDatas(1, vagaArvore);
+                    estacionamentos[1] = dados.LeitorDatas(2, vagaArvore);
+                    estacionamentos[2] = dados.LeitorDatas(3, vagaArvore);
 
-                    dataArvore.PrintarDatas(data);
+                    Console.WriteLine("Qual o estacionamento deseja selecionar (0, 1, 2)");
+                    int estacionamento = int.Parse(Console.ReadLine());
+
+                    estacionamentos[estacionamento] = dados.LeitorEstacionadaData(estacionamentos[estacionamento]);
+
+                    estacionamentos[estacionamento].PrintarDatas(data);
 
                     Console.WriteLine("Digite algo para continuar...");
                     Console.ReadKey();
