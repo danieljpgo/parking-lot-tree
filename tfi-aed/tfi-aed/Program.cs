@@ -26,7 +26,7 @@ namespace tfi_aed
                     string vaga = Console.ReadLine();
 
                     VagaArvore vagaArvore = dados.LeitorVagas();
-                    vagaArvore = dados.LeitorEstacionada(null, vagaArvore);
+                    vagaArvore = dados.LeitorEstacionada(null, vagaArvore, null);
 
                     Console.WriteLine("Digite data inicial");
                     string intervaloIni = Console.ReadLine();
@@ -48,7 +48,7 @@ namespace tfi_aed
                     string placa = Console.ReadLine();
 
                     PlacaArvore placaArvore = dados.LeitorPlacas();
-                    placaArvore = dados.LeitorEstacionada(placaArvore, null);
+                    placaArvore = dados.LeitorEstacionada(placaArvore, null, null);
 
                     placaArvore.PrintarEstaciondas(placa);
 
@@ -59,6 +59,16 @@ namespace tfi_aed
                 else if (opcao == 3)
                 {
                     Console.Clear();
+
+                    Console.WriteLine("Qual a data que deseja selecionar (DD/MM/YYYY)?");
+                    string data = Console.ReadLine();
+
+                    VagaArvore vagaArvore = dados.LeitorVagas();
+
+                    DataArvore dataArvore = dados.LeitorDatas(0, vagaArvore);
+                    dataArvore = dados.LeitorEstacionada(null, null, dataArvore);
+
+                    dataArvore.PrintarDatas(data);
 
                     Console.WriteLine("Digite algo para continuar...");
                     Console.ReadKey();

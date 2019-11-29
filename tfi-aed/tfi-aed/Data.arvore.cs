@@ -269,30 +269,30 @@ namespace tfi_aed
         }
 
         // Método para Printar as informações relacionadas as Estacionadas de uma Placa
-        public void PrintarDatas(string vaga, string valorInit, string valorFim)
+        public void PrintarDatas(string data)
         {
-            // Buscar as informações relacionadas ao Veiculo
-            DataNodo vagaNodo = LocalizarData(vaga);
+            //// Buscar as informações relacionadas ao Veiculo
+            //DataNodo vagaNodo = LocalizarData(vaga);
 
-            DateTime inicio = DateTime.ParseExact(valorInit, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            DateTime fim = DateTime.ParseExact(valorFim, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            //DateTime inicio = DateTime.ParseExact(valorInit, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            //DateTime fim = DateTime.ParseExact(valorFim, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-            Console.WriteLine("Informações sobre a Vaga: {0}", vaga);
+            //Console.WriteLine("Informações sobre a Vaga: {0}", vaga);
 
-            // Ordernação utilizando metodos de sort da lista generica do Generic
-            // https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.sort?view=netframework-4.8#System_Collections_Generic_List_1_Sort_System_Comparison__0__
-            vagaNodo.Estacionadas.Sort((a, b) => a.Entrada.CompareTo(b.Entrada));
+            //// Ordernação utilizando metodos de sort da lista generica do Generic
+            //// https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.sort?view=netframework-4.8#System_Collections_Generic_List_1_Sort_System_Comparison__0__
+            //vagaNodo.Estacionadas.Sort((a, b) => a.Entrada.CompareTo(b.Entrada));
 
-            // Loop para printar as informações
-            vagaNodo.Estacionadas.ForEach((value) =>
-            {
-                if ((DateTime.Compare(value.Entrada, inicio) >= 0) && (DateTime.Compare(value.Saida, fim) <= 0))
-                {
-                    Console.WriteLine("Entrada: {0}\tSaida: {1}\tPlaca: {2}", value.Entrada, value.Saida, value.Placa);
-                    Console.WriteLine("-----------------");
+            //// Loop para printar as informações
+            //vagaNodo.Estacionadas.ForEach((value) =>
+            //{
+            //    if ((DateTime.Compare(value.Entrada, inicio) >= 0) && (DateTime.Compare(value.Saida, fim) <= 0))
+            //    {
+            //        Console.WriteLine("Entrada: {0}\tSaida: {1}\tPlaca: {2}", value.Entrada, value.Saida, value.Placa);
+            //        Console.WriteLine("-----------------");
 
-                }
-            });
+            //    }
+            //});
         }
 
         // Método usado para localizar o veículo nas estruturas criadas de árvore e filas
