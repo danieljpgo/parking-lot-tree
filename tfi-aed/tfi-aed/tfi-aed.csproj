@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arquivo.cs" />
+    <Compile Include="Data.arvore.cs" />
+    <Compile Include="Data.cs" />
+    <Compile Include="DataNodo.cs" />
     <Compile Include="Placa.arvore.cs" />
     <Compile Include="Estacionada.cs" />
     <Compile Include="Lista.cs" />
