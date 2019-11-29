@@ -276,6 +276,8 @@ namespace tfi_aed
 
             Console.WriteLine("Informações sobre a Vaga: {0}", vaga);
 
+            // Ordernação utilizando metodos de sort da lista generica do Generic
+            // https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.sort?view=netframework-4.8#System_Collections_Generic_List_1_Sort_System_Comparison__0__
             vagaNodo.Estacionadas.Sort((a, b) => a.Entrada.CompareTo(b.Entrada));
 
             // Loop para printar as informações
