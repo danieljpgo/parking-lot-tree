@@ -93,14 +93,12 @@ namespace tfi_aed
                         novo.Pai = onde;
 
                         // Metodo para Balancear
-                        //Console.WriteLine("Dir");
                         Balancear(onde);
 
                     }
                     else
                     {
                         // Inserir a Direita
-                        //Console.WriteLine("Dir Inserir");
                         Inserir(onde.Direita, novo);
                     }
 
@@ -251,16 +249,15 @@ namespace tfi_aed
             aux = raiz;
             while (achou == 0)
             {
-                Console.WriteLine((aux.Vaga.Nome));
-                if (estacionada.Placa.CompareTo(aux.Vaga.Nome) < 0)
+                if (estacionada.Vaga.CompareTo(aux.Vaga.Nome) < 0)
                 {
                     aux = aux.Esquerda;
                 }
-                else if (estacionada.Placa.CompareTo(aux.Vaga.Nome) > 0)
+                else if (estacionada.Vaga.CompareTo(aux.Vaga.Nome) > 0)
                 {
                     aux = aux.Direita;
                 }
-                else if (estacionada.Placa.CompareTo(aux.Vaga.Nome) == 0)
+                else if (estacionada.Vaga.CompareTo(aux.Vaga.Nome) == 0)
                 {
                     aux.Estacionadas.Add(estacionada);
                     achou = 1;
@@ -274,13 +271,22 @@ namespace tfi_aed
             // Buscar as informações relacionadas ao Veiculo
             VagaNodo vagaNodo = LocalizarVaga(vaga);
 
+            DateTime inicio = DateTime.ParseExact(valorInit, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime fim = DateTime.ParseExact(valorFim, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
             Console.WriteLine("Informações sobre a Vaga: {0}", vaga);
+
+            vagaNodo.Estacionadas.Sort((a, b) => a.Entrada.CompareTo(b.Entrada));
 
             // Loop para printar as informações
             vagaNodo.Estacionadas.ForEach((value) =>
             {
-                Console.WriteLine("Entrada: {0}\tSaida: {1}\tPlaca: {2}", value.Entrada, value.Saida, value.Placa);
-                Console.WriteLine("-----------------");
+                if ((DateTime.Compare(value.Entrada, inicio) >= 0) && (DateTime.Compare(value.Saida, fim) <= 0))
+                {
+                    Console.WriteLine("Entrada: {0}\tSaida: {1}\tPlaca: {2}", value.Entrada, value.Saida, value.Placa);
+                    Console.WriteLine("-----------------");
+
+                }
             });
         }
 
